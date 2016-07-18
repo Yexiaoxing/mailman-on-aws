@@ -126,6 +126,10 @@ Reboot to let the system up-to-date:
 
 The Z shell (zsh) is a Unix shell that can be used as an interactive login shell and as a powerful command interpreter for shell scripting. Zsh can be thought of as an extended Bourne shell with a large number of improvements, including some features of bash, ksh, and tcsh.
 
+First, you need to set a password for current user
+
+    sudo passwd
+    
 Run
 
     sudo apt-get install zsh
