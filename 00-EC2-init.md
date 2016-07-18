@@ -14,7 +14,7 @@ Create or import your SSH key pair [here](https://ap-northeast-1.console.aws.ama
 
 If you already have one ssh key pairs (used to log into a Linux machine), you can import it here。
 
-img/00-00-01.png
+!(img/00-00-01.png)
 
 If not, just click **Create Key Pair** to create one. Here it will download one .pem file, the private key,
 
@@ -105,17 +105,27 @@ Click **Connect** to get instructions.
 Type the following commands, line by line.
 
     sudo apt-get update # update package info
-    sudo apt-get install language-pack-en # install locate
     sudo apt-get upgrade # upgrade the system
-    sudo apt-get install python3-pip python-pip # install some essencial packages
+    sudo apt-get install python3-pip python-pip galternatives language-pack-en git # install some essencial packages
 
-To set the hostname, run
-
-    sudo hostname [hostname]
+To set the hostname, 
+- Edit /etc/hostname , make the name change, save the file.
     
+    sudo echo "[hostname]" > /etc/hostname
+
+- You should also make the same changes in /etc/hosts file.
+- Run sudo /etc/init.d/hostname restart or sudo service hostname restart.
+
 In this example [hostname] has been set to mail-aws-test.xiaoxing.us
 
 Reboot to let the system up-to-date:
 
     sudo reboot
     
+### Optional: Install zsh and oh-my-zsh
+
+The Z shell (zsh) is a Unix shell that can be used as an interactive login shell and as a powerful command interpreter for shell scripting. Zsh can be thought of as an extended Bourne shell with a large number of improvements, including some features of bash, ksh, and tcsh.
+
+Run
+    sudo apt-get install zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
