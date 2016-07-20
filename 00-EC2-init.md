@@ -65,6 +65,7 @@ Add some rules.
 - Allow SSH traffic from your IP address
 - Allow all ICMP traffic from your IP address, to enable ping requests
 - Allow HTTPS and HTTP traffic
+- Allow port 8000 for testing Mailman
 
 ![](img/00-06.png)
 
