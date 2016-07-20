@@ -55,8 +55,77 @@ For more information, please click http://docs.aws.amazon.com/ses/latest/Develop
 
 ## Configure Postfix in EC2
 
-Please follow http://docs.aws.amazon.com/ses/latest/DeveloperGuide/postfix.html to setup postfix in your EC2 server.
+Run the following commands line by line:
+
+    sudo apt-get remove sendmail
+    sudo apt-get install postfix
+    # Note: choose "Internet site" if prompted.
+
+After you have installed postfix, use the editor you like, such as nano, vim or emacs, to edit **/etc/postfix/main.cf** file. For example here, we use nano.
+
+    sudo nano /etc/postfix/main.cf 
+
+Add the following lines, please be noted that if you are not using US-East-1 (**US East (N. Virginia)**) region, you will need to replace [email-smtp.us-east-1.amazonaws.com] with the smtp server you use.
+
+    relayhost = [email-smtp.us-east-1.amazonaws.com]:25
+    smtp_sasl_auth_enable = yes
+    smtp_sasl_security_options = noanonymous
+    smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+    smtp_use_tls = yes
+    smtp_tls_security_level = encrypt
+    smtp_tls_note_starttls_offer = yes
+
+Save and close it.
+
+Run 
+
+    /etc/init.d/postfix reload
+    
+Edit or create **/etc/postfix/sasl_passwd** file. Add the following line to the file, replacing USERNAME and PASSWORD with your SMTP user name and password.
+
+    [email-smtp.us-east-1.amazonaws.com]:25 USERNAME:PASSWORD
+    ses-smtp-prod-335357831.us-east-1.elb.amazonaws.com:25 USERNAME:PASSWORD
+
+Run
+
+    sudo postmap hash:/etc/postfix/sasl_passwd
+
+to create a hashmap database file containing your SMTP credentials.
+
+Protect your database using
+
+    sudo chown root:root /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+    sudo chmod 0600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+    
+Then run
+
+    sudo postconf -e 'smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt'
+
+to tell Postfix where to find the CA certificate (needed to verify the Amazon SES server certificate).
+
+After all, restart postfix to apply settings:
+
+    sudo postfix stop
+    sudo postfix start
+
+Reference: http://docs.aws.amazon.com/ses/latest/DeveloperGuide/postfix.html
+
+Send a test email by typing the following at a command line, pressing Enter after each line. Note that you must replace from@example.com with your "From" email address, which you must have previously verified with Amazon SES. Replace to@example.com with your "To" address. The "To" address must also be verified. Also note that the final line is a single period.
+
+    sendmail -f from@example.com to@example.com
+
+    From: from@example.com
+
+    Subject: Test
+
+    This email was sent through Amazon SES!
+
+    .
 
 ## Request a Sending Limit Increase
 
 Your Amazon SES account has "sandbox" access in region US East (N. Virginia). With sandbox access you can only send email to the Amazon SES mailbox simulator and to email addresses or domains that you have verified. To be moved out of the sandbox, please request a sending limit increase. 
+
+## Have Problems?
+
+Visit http://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-issues.html and see if you can find a solution.
