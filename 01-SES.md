@@ -18,8 +18,6 @@ The domain we will used in the example is **mail-aws-test.xiaoxing.us**.
 
 Click **Verify a new domain**, enter the domain you want to use, tick DKIM checkout, and click Verify. Then a list of DNS records will be generated for you. You need to add them to your DNS management panel. For more instrucation please refer to your domain provider.
 
-img/01-01.png
-
 It may take up to 72 hours to get the record. When you see a green **verified** in status, go to next step.
 
 ## Getting SMTP Credentials
