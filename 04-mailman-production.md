@@ -120,14 +120,6 @@ Run:
     cd mailman_bundler
     bin/mailman-post-update
 
-## Install Mailman Service
-
-You need to run as root or use sudo. So go back to default user. Run:
-    
-    exit
-    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.service /etc/systemd/system/
-    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.logrotate.conf /etc/logrotate.d
-    
 ## Running web interface on Gunicorn
 
 To add Gunicorn support, just run the following command:
@@ -142,4 +134,15 @@ You can then serve the Mailman web interfaces with Gunicorn by running the follo
 
     ./bin/gunicorn mailman_web.wsgi:application -b 0.0.0.0:8000
 
-No img and css now -- it is normal. Go to configure nginx.
+No img and css now -- it is normal. 
+
+## Install Mailman Service
+
+You need to run as root or use sudo. So go back to default user. Run:
+    
+    exit
+    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.service /etc/systemd/system/
+    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.logrotate.conf /etc/logrotate.d
+    sudo cp /opt/mailman/mailman-bundler/deployment/mailman-web-gunicorn.service /etc/systemd/system/
+
+Go to configure nginx.
