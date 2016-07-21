@@ -10,13 +10,11 @@ Click **Get Started**.
 
 ###  Step 1: Select Engine
 
-Here, we will need to choose the DB Engine we use in the following config. We choose MySQL, for instance.
+Here, we will need to choose the DB Engine we use in the following config. We choose PostgreSQL, for instance.
 
 ![](img/03-01.png)
 
-Then Production - Dev/Test - MySQL for lower cost (hope).
-
-![](img/03-02.png)
+Then Production - Dev/Test - PostgreSQL for lower cost (hope).
 
 
 ### Step 2: Specify DB Details
@@ -44,7 +42,7 @@ Go here: https://ap-northeast-1.console.aws.amazon.com/ec2/v2/home?region=ap-nor
 Select it, turn to the inbound pane in the bottom, and click Edit.
 
 Add a rule:
-- Type: MYSQL / Aurora
+- Type: PostgreSQL
 - Source: Custom [YOUR EC2 IP]/32
 
 Save.
