@@ -136,13 +136,16 @@ You can then serve the Mailman web interfaces with Gunicorn by running the follo
 
 No img and css now -- it is normal. 
 
-## Install Mailman Service
+## Start when Boot
 
 You need to run as root or use sudo. So go back to default user. Run:
     
     exit
-    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.service /lib/systemd/system/
-    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.logrotate.conf /etc/logrotate.d
-    sudo cp /opt/mailman/mailman-bundler/deployment/mailman-web-gunicorn.service /lib/systemd/system/
+    sudo nano /etc/rc.local
 
-Go to configure nginx.
+Add the following lines before exit:
+
+    su -c "/opt/mailman/mailman-bundler/bin/mailman start &" mailman
+    su -c "/opt/mailman/mailman-bundler/bin/gunicorn -c /opt/mailman/mailman-bundler/deployment/gunicorn.conf mailman_web.wsgi:application &" mailman
+
+Now you are done. Go to configure nginx.
