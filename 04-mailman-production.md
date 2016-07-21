@@ -141,8 +141,8 @@ No img and css now -- it is normal.
 You need to run as root or use sudo. So go back to default user. Run:
     
     exit
-    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.service /etc/systemd/system/
+    sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.service /lib/systemd/system/
     sudo cp /opt/mailman/mailman-bundler/deployment/mailman3.logrotate.conf /etc/logrotate.d
-    sudo cp /opt/mailman/mailman-bundler/deployment/mailman-web-gunicorn.service /etc/systemd/system/
+    sudo cp /opt/mailman/mailman-bundler/deployment/mailman-web-gunicorn.service /lib/systemd/system/
 
 Go to configure nginx.
