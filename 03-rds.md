@@ -43,7 +43,9 @@ Select it, turn to the inbound pane in the bottom, and click Edit.
 
 Add a rule:
 - Type: PostgreSQL
-- Source: Custom [YOUR EC2 IP]/32
+- Source: Custom [YOUR EC2 PRIVATE IP]/32
+
+( You can get the private ip of your ec2 vm here: https://ap-northeast-1.console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#Instances:sort=instanceId )
 
 Save.
 
