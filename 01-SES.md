@@ -77,6 +77,15 @@ Add the following lines, please be noted that if you are not using US-East-1 (**
 
 Save and close it.
 
+    sudo nano /etc/postfix/master.cf
+    
+    # add them:
+    
+    relay-smtps  unix  -       -       n       -       -       smtp
+    # Client-side SMTPS requires "encrypt" or stronger.
+        -o smtp_tls_security_level=encrypt
+        -o smtp_tls_wrappermode=yes
+
 Run 
 
     /etc/init.d/postfix reload
