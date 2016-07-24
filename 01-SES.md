@@ -16,6 +16,8 @@ Open Identity Management - [Domains](https://console.aws.amazon.com/ses/home?reg
 
 The domain we will used in the example is **mail-aws-test.xiaoxing.us**.
 
+Also, you need to set [DOMAIN]'s A record to [Elastic IP], and MX record to [DOMAIN].
+
 Click **Verify a new domain**, enter the domain you want to use, tick DKIM checkout, and click Verify. Then a list of DNS records will be generated for you. You need to add them to your DNS management panel. For more instrucation please refer to your domain provider.
 
 It may take up to 72 hours to get the record. When you see a green **verified** in status, go to next step.
