@@ -67,7 +67,7 @@ After you have installed postfix, use the editor you like, such as nano, vim or 
 
 Add the following lines, please be noted that if you are not using US-East-1 (**US East (N. Virginia)**) region, you will need to replace [email-smtp.us-east-1.amazonaws.com] with the smtp server you use.
 
-    relayhost = [email-smtp.us-east-1.amazonaws.com]:25
+    relayhost = [email-smtp.us-east-1.amazonaws.com]:465
     smtp_sasl_auth_enable = yes
     smtp_sasl_security_options = noanonymous
     smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
@@ -83,8 +83,8 @@ Run
     
 Edit or create **/etc/postfix/sasl_passwd** file. Add the following line to the file, replacing USERNAME and PASSWORD with your SMTP user name and password.
 
-    [email-smtp.us-east-1.amazonaws.com]:25 USERNAME:PASSWORD
-    ses-smtp-prod-335357831.us-east-1.elb.amazonaws.com:25 USERNAME:PASSWORD
+    [email-smtp.us-east-1.amazonaws.com]:465 USERNAME:PASSWORD
+    ses-smtp-prod-335357831.us-east-1.elb.amazonaws.com:465 USERNAME:PASSWORD
 
 Run
 
