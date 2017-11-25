@@ -39,7 +39,7 @@ In this pane, you can see some setting, for example,
 - In the **Create User for SMTP dialog box**, you will see that an SMTP user name has been filled in for you. You can accept this suggested user name or enter a different one. To proceed, click **Create**.
 - Click **Show User SMTP Credentials**. Your SMTP credentials will be displayed on the screen; copy them and store them in a safe place. You can also click **Download Credentials** to download a file that contains your credentials.
 
-## Setting MAIL FROM Domain (DON'T DO IT)
+## Setting MAIL FROM Domain (Optional)
 
 By default, messages that you send through Amazon SES use amazonses.com (or a subdomain of that) as the MAIL FROM domain. Sender Policy Framework (SPF) authentication successfully validates these messages because the default MAIL FROM domain matches the sending mail server. It is enough for most users. But if you want to set it as your domain, follow the step.
 
